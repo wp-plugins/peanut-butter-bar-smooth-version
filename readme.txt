@@ -35,7 +35,7 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 This Readme file was generated using <a href = 'http://sudarmuthu.com/wordpress/wp-readme'>wp-readme</a>, which generates readme files for WordPress Plugins.
 
-==Readme Generator== 
+==Changelog== 
 
 = 1.0.1 =
 * Fixed links in info page
