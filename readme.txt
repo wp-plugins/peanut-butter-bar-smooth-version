@@ -15,14 +15,10 @@ Peanut Butter Bar allows you to attach sticky bars to the roof of your site that
 The plugin allows you to attach sticky bars to the roof of your site that stays visible no matter how far a user scrolls.
 
 *   Responsive and mobile friendly.  
-    
-*   Choose from a range of tasty colors.  
-    
-*   Track clicks using Google Analytics Events.  
-    
+*   Choose from a range of tasty colors. 
+*   Track clicks using Google Analytics Events using the Analytics you already use in your blog.  
 *   Plugin runs within your WordPress install. No external servers to deal with.
-*   Close button state persists through a user's session without cookies.  
-    
+*   Close button state persists through a user's session without cookies.    
 
 This is the Smooth version of Peanut Butter Bar. It supports a single site-wide bar. The Crunchy (paid) version has more bits including multiple bars and attaching bars to specific posts/pages and categories. Learn more at <a href="http://peanutbutterplugin.com" target="_blank">peanutbutterplugin.com</a>.
 
@@ -38,3 +34,11 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 ==Readme Generator== 
 
 This Readme file was generated using <a href = 'http://sudarmuthu.com/wordpress/wp-readme'>wp-readme</a>, which generates readme files for WordPress Plugins.
+
+==Readme Generator== 
+
+= 1.0.1 =
+* Fixed links in info page
+
+= 1.0 =
+* Initial checkin
