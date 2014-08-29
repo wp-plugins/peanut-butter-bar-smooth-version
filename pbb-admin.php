@@ -82,6 +82,7 @@ if ( !class_exists( 'PBB_Admin' ) &&  is_admin() ){
 
 				$bar = PBB_Bar_Helper::array_to_bar($_REQUEST['pbb_bar']);
 
+				$bar['behavior']['show_branding'] = isset( $_REQUEST['pbb_bar']['show_branding'] ) ? 'on' : false ;
 				$theme = $bar['theme'];
 				$link_module = $bar['link'];
 				$tracking  = $bar['tracking'];

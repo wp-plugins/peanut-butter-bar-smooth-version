@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Peanut Butter Bar (smooth version)
  * Description: All the good stuff that sticks to the top of your site. 
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Andrew Couch
  * Author URI: http://andrew-couch.com
  * Plugin URI: http://peanutbutterplugin.com
@@ -11,7 +11,7 @@
 */
 if ( ! defined( 'ABSPATH' ) ) exit;
 if( ! defined( 'PEANUT_BUTTER_BAR_VERSION' ) ) {
-	  define( 'PEANUT_BUTTER_BAR_VERSION', '1.0.1' );
+	  define( 'PEANUT_BUTTER_BAR_VERSION', '1.0.2' );
 	}
 
 require_once('pbb-admin.php');
