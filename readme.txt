@@ -2,7 +2,7 @@
 Contributors: andrewcouch 
 Tags: sticky bar, alert bar, sticky bar bottom, fixed bar, responsive bar, top bar, sticky header, 
 Requires at least: 3.8
-Tested up to: 3.9.1
+Tested up to: 4.0.0
 Stable tag: trunk
 License: GPLv2 or later
 
