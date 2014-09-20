@@ -37,6 +37,10 @@ This Readme file was generated using <a href = 'http://sudarmuthu.com/wordpress/
 
 ==Changelog== 
 
+= 1.0.3 =
+* Improved Smooth->Crunchy upgrade path
+* Changed internal class name to prevent conflicts
+
 = 1.0.2 =
 * Credit link can now be deactivated.
 * Link in bar now explicitly sets no border to deal with some theme compatibility issues

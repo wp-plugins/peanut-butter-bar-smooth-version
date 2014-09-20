@@ -10,9 +10,9 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( !class_exists( 'PBB_Bar_Helper' ) &&  is_admin() ){
+if ( !class_exists( 'PBBS_Bar_Helper' ) &&  is_admin() ){
 
-	class PBB_Bar_Helper  {
+	class PBBS_Bar_Helper  {
 		/**
 		 * Structure used in rest of class for the fields of a Bar
 		 */
@@ -62,7 +62,7 @@ if ( !class_exists( 'PBB_Bar_Helper' ) &&  is_admin() ){
 		public static function flatten_bar($bar)
 		{
 			$bar_output = array();
-			foreach(PBB_Bar_Helper::$structure['metas'] as $name=>$meta)
+			foreach(PBBS_Bar_Helper::$structure['metas'] as $name=>$meta)
 			{
 				foreach($meta['fields'] as $key=>$default)
 				{
@@ -86,7 +86,7 @@ if ( !class_exists( 'PBB_Bar_Helper' ) &&  is_admin() ){
         public static function array_to_bar($bar_post)
         {
             $bar_output = array();
-            foreach(PBB_Bar_Helper::$structure['metas'] as $name=>$meta)
+            foreach(PBBS_Bar_Helper::$structure['metas'] as $name=>$meta)
             {
                 foreach($meta['fields'] as $key=>$default)
                 {

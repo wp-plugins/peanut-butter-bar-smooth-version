@@ -12,8 +12,8 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( !class_exists( 'PBB_Settings_ScreenBuilder' ) ) {
-	class PBB_Settings_ScreenBuilder {
+if ( !class_exists( 'PBBS_Settings_ScreenBuilder' ) ) {
+	class PBBS_Settings_ScreenBuilder {
 
 		public $settings_errors;
 

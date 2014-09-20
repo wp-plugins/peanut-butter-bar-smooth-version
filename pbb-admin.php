@@ -14,9 +14,9 @@ if ( is_admin() ) {
 	require_once plugin_dir_path( __FILE__ ) . 'pbb-bar-helper.php';
 }
 
-if ( !class_exists( 'PBB_Admin' ) &&  is_admin() ){
+if ( !class_exists( 'PBBS_Admin' ) &&  is_admin() ){
 
-	class PBB_Admin  {
+	class PBBS_Admin  {
 
 		private $pagename;
 		private $settingprefix;
@@ -30,7 +30,7 @@ if ( !class_exists( 'PBB_Admin' ) &&  is_admin() ){
 			add_action( 'admin_init', array( $this, 'admin_init' ) );
 			$this->pagename = $pagename;
 			$this->settingprefix = $settingprefix;
-			if ( !class_exists( 'PBB_Settings_ScreenBuilder' ) )
+			if ( !class_exists( 'PBBS_Settings_ScreenBuilder' ) )
 				wp_die('Problem');
 			$this->info_page_link = admin_url("options-general.php?page=$this->pagename&tab=info");
 		}
@@ -39,16 +39,17 @@ if ( !class_exists( 'PBB_Admin' ) &&  is_admin() ){
 		 * Add menu to admin screen
 		 */
 		function admin_menu() {
-			// Adds the plugin admin menu page (in wp-admin > Settings)
-			// sets the page hook for this settings page.
-	        $this->page_hook = add_options_page(
-	            __('Peanut Butter Bar Admin','pbb-textdomain'),
-	            __('Peanut Butter Bar Settings','pbb-textdomain'),
-	            'manage_options',
-	            $this->pagename,
-	            array( $this, 'admin_page' )
-	        );
-	        add_action( 'load-' . $this->page_hook, array($this,'load_admin_page') );
+			if ( is_plugin_active( plugin_basename(plugin_dir_path( __FILE__ ).'pbb-smooth.php') ) ) {
+				// Adds the plugin admin menu page (in wp-admin > Settings)
+				// sets the page hook for this settings page.
+		        $this->page_hook = add_options_page(
+		            __('Peanut Butter Bar Admin','pbb-textdomain'),
+		            __('Peanut Butter Bar Settings','pbb-textdomain'),
+		            'manage_options',
+		            $this->pagename,
+		            array( $this, 'admin_page' )
+		        );
+		    }
 		}
 		/**
 		 * Loads admin screen
@@ -69,6 +70,7 @@ if ( !class_exists( 'PBB_Admin' ) &&  is_admin() ){
 		 * Adds actions for admin 
 		 */		
 		function admin_init(){
+			add_action( 'load-' . $this->page_hook, array($this,'load_admin_page') );
 	        add_action('admin_action_pbb-savebar',array($this,'save_bar'));
 		}
 
@@ -80,7 +82,7 @@ if ( !class_exists( 'PBB_Admin' ) &&  is_admin() ){
 
 			if ( isset( $_REQUEST['pbb_bar'] ) ){
 
-				$bar = PBB_Bar_Helper::array_to_bar($_REQUEST['pbb_bar']);
+				$bar = PBBS_Bar_Helper::array_to_bar($_REQUEST['pbb_bar']);
 
 				$bar['behavior']['show_branding'] = isset( $_REQUEST['pbb_bar']['show_branding'] ) ? 'on' : false ;
 				$theme = $bar['theme'];
@@ -90,7 +92,7 @@ if ( !class_exists( 'PBB_Admin' ) &&  is_admin() ){
 
 				if ($this->validate_bar($link_module, $theme, $behavior))
 				{			
-					$builder = new PBB_Bar_Builder($this->settingprefix);
+					$builder = new PBBS_Bar_Builder($this->settingprefix);
 					$barhtml = $builder->make_bar_as_excerpt($theme, $link_module, $tracking, $behavior);
 					$bar_settings = array('barhtml'=>$barhtml, 'theme'=>$theme, 'link'=>$link_module, 'tracking'=>$tracking, 'behavior'=>$behavior);
 					update_option($this->settingprefix.'_smooth', $bar_settings);
@@ -399,7 +401,7 @@ if ( !class_exists( 'PBB_Admin' ) &&  is_admin() ){
 				$bar_data = array_merge($error_bar_values['link'],$error_bar_values['theme'],$error_bar_values['tracking'],$error_bar_values['behavior']);			
 			}
 			delete_transient('pbb-error-values');
-			$form_fields =  new PBB_Settings_ScreenBuilder( get_settings_errors() );
+			$form_fields =  new PBBS_Settings_ScreenBuilder( get_settings_errors() );
 			$form_fields->do_screen('pbb_bar',$fields, $bar_data, false);
 
 			echo '<tr><td>';
@@ -429,7 +431,7 @@ if ( !class_exists( 'PBB_Admin' ) &&  is_admin() ){
 		 */
 		public function get_current_bar() {
 			$bar = get_option($this->settingprefix.'_smooth');
-			$bar_data = PBB_Bar_Helper::flatten_bar($bar);
+			$bar_data = PBBS_Bar_Helper::flatten_bar($bar);
 			return $bar_data;
 		}
 	}

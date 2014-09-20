@@ -10,9 +10,9 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( !class_exists( 'PBB_Bar_Builder' ))
+if ( !class_exists( 'PBBS_Bar_Builder' ))
 {
-	class PBB_Bar_Builder{
+	class PBBS_Bar_Builder{
 		private $options;
 		private $linktext ;
 
