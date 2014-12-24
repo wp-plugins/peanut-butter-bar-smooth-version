@@ -66,18 +66,25 @@ if ( !class_exists( 'PBBS_Bar_Builder' ))
 			if ($this->ischecked($link_module,'use_linkmodule', false))
 			{
 				$foundmodule = true;
-				$linkmodule_html = sprintf('<span class="pbb-text pbb-module">%s<a href="%s"%s%s%s>%s</a>%s</span>'
+				$link_html = '';
+				if ($this->text($link_module,'linktext', '', '', '') != '')
+				{
+					$link_html = sprintf('<a href="%s"%s%s%s>%s</a>'
+						,$this->text($link_module,'linkurl', '', '', ' ', 'attr')
+						,$this->checkbox($link_module,'link_newwindow', false, ' target="_blank"', '')
+						,$this->checkbox($link_module,'link_as_button', false, ' class="pbb-linkbutton"', '')
+						,$this->ischecked($tracking,'ga_tracking', false) ? $this->pbb_generate_ga_tracking($tracking) : ''
+						,$this->text($link_module,'linktext', '', '', ''));
+				}
+				$linkmodule_html = sprintf('<span class="pbb-text pbb-module%s">%s%s%s</span>'
+					,$this->text($link_module,'linkclass', '', ' ', '')
 					,$this->text($link_module,'pretitle', '', '', ' ')
-					,$this->text($link_module,'linkurl', '', '', ' ', 'attr')
-					,$this->checkbox($link_module,'link_newwindow', false, ' target="_blank"', '')
-					,$this->checkbox($link_module,'link_as_button', false, ' class="pbb-linkbutton"', '')
-					,$this->ischecked($tracking,'ga_tracking', false) ? $this->pbb_generate_ga_tracking($tracking) : ''
-					,$this->text($link_module,'linktext', '', '', '')
+					,$link_html
 					,$this->text($link_module,'posttitle', '', ' ', ''));
 				$output .= $linkmodule_html;
 			}
 			$output .= sprintf('</div><div id="pbb-closer"></div></div><div id="pbb-opener"></div></div>');
-			if ($foundmodule)
+			if ($foundmodule && $this->ischecked($behavior,'show_bar'))
 			{
 				return $output;
 			}else{

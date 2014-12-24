@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Peanut Butter Bar (smooth version)
  * Description: All the good stuff that sticks to the top of your site. 
- * Version: 1.0.3
+ * Version: 1.1.0
  * Author: Andrew Couch
  * Author URI: http://andrew-couch.com
  * Plugin URI: http://peanutbutterplugin.com
@@ -18,6 +18,7 @@ if ( !class_exists( 'PBB_Smooth' ))
 {
 	class PBB_Smooth
 	{
+		const DB_VER = 1;
 		public $settingprefix = 'pbb_settings';
 		public $settingpage = 'pbbsmooth';
 
@@ -27,14 +28,19 @@ if ( !class_exists( 'PBB_Smooth' ))
 			add_action( 'wp_footer', array($this,'pbb_show_bar') );
 			add_action( 'pbb_showbar', array($this,'pbb_show_bar') );
 			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array($this,'plugin_action_links' ));
-			add_action( 'plugins_loaded', array($this,'load_textdomain') );
-			//register_deactivation_hook(__FILE__, array($this,'pbb_crunchy_plugin_deactivate'));
+			add_action( 'plugins_loaded', array($this, 'load_textdomain') );
+			add_action( 'plugins_loaded', array($this, 'maybe_update' ), 1 );
+			register_deactivation_hook(__FILE__, array($this,'pbb_smooth_plugin_deactivate'));
 		}
 		/**
 		* Removes the action links on deactivate
 		*/
-		function pbb_crunchy_plugin_deactivate(){
-			remove_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array($this,'plugin_action_links' ));
+		function pbb_smooth_plugin_deactivate(){
+			//remove_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array($this,'plugin_action_links' ));
+			global $wp_roles;
+			$wp_roles->remove_cap('editor','manage_pbb');
+			$wp_roles->remove_cap('administrator','manage_pbb');
+			$wp_roles->remove_cap('super admin','manage_pbb');			
 		}		
 		/**
 		 * Loads language files
@@ -81,6 +87,18 @@ if ( !class_exists( 'PBB_Smooth' ))
 			}
 
 		}
+		/**
+		 * Determines whether updates are required based on DB version
+		 */
+		function maybe_update() {
+	        // bail if this plugin data doesn't need updating
+	        if ( get_option( $this->settingprefix.'_smoothdbver', 0 ) >= self::DB_VER ) {
+	            return;
+	        }
+	 
+	        require_once( __DIR__ . '/pbb-update.php' );
+	        pbb_smooth_update( $this->settingprefix.'_smoothdbver' , self::DB_VER);
+	    }
 
 	}
 }
@@ -98,7 +116,12 @@ function pbb_smooth_plugin_activate(){
 	  	//"smooth version" plugin is activated
 		deactivate_plugins( __FILE__ );
 		pbb_smooth_trigger_error('The crunchy version of Peanut Butter Bar is active. You already have access to all of the paid features and do not need to have smooth installed as well..', E_USER_ERROR);
-	} 
+	} else{
+		global $wp_roles;
+		$wp_roles->add_cap('editor','manage_pbb');
+		$wp_roles->add_cap('administrator','manage_pbb');
+		$wp_roles->add_cap('super admin','manage_pbb');
+	}
 }
 /**
  * Custom error for activation

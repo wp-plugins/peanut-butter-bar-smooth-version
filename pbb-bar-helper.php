@@ -34,6 +34,7 @@ if ( !class_exists( 'PBBS_Bar_Helper' ) &&  is_admin() ){
 						'linkurl'=>'',
 						'link_newwindow'=>false,
 						'link_as_button'=>false,
+						'linkclass'=>'',
 						),
 					),
 				'tracking'=>array(
@@ -52,6 +53,7 @@ if ( !class_exists( 'PBBS_Bar_Helper' ) &&  is_admin() ){
 						'delay_bounce_secs'=>'5',
 						'attach_bottom'=>false,
 						'show_branding'=>'on',
+						'show_bar'=>'on',
 						),
 					),
 			),

@@ -2,7 +2,7 @@
 Contributors: andrewcouch 
 Tags: sticky bar, alert bar, sticky bar bottom, fixed bar, responsive bar, top bar, sticky header, 
 Requires at least: 3.8
-Tested up to: 4.0.0
+Tested up to: 4.1.0
 Stable tag: trunk
 License: GPLv2 or later
 
@@ -36,6 +36,14 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 This Readme file was generated using <a href = 'http://sudarmuthu.com/wordpress/wp-readme'>wp-readme</a>, which generates readme files for WordPress Plugins.
 
 ==Changelog== 
+
+= 1.1.0 =
+* Added checkbox to allow for hiding of bar without deactivating the plugin
+* Added new capability 'manage_pbb' and added to Admin, Super Admin and Editor roles
+* Permissions change: Editor roles can now create and manage bars
+* Linktext and Link URL may be left blank to create a pure "notification bar" without a link.
+* Changed labeling of boxes for clarity
+* Added Link CSS Class option to add a class to the bar span tag
 
 = 1.0.3 =
 * Improved Smooth->Crunchy upgrade path

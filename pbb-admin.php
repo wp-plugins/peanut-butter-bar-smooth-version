@@ -45,7 +45,7 @@ if ( !class_exists( 'PBBS_Admin' ) &&  is_admin() ){
 		        $this->page_hook = add_options_page(
 		            __('Peanut Butter Bar Admin','pbb-textdomain'),
 		            __('Peanut Butter Bar Settings','pbb-textdomain'),
-		            'manage_options',
+		            'manage_pbb',
 		            $this->pagename,
 		            array( $this, 'admin_page' )
 		        );
@@ -85,6 +85,7 @@ if ( !class_exists( 'PBBS_Admin' ) &&  is_admin() ){
 				$bar = PBBS_Bar_Helper::array_to_bar($_REQUEST['pbb_bar']);
 
 				$bar['behavior']['show_branding'] = isset( $_REQUEST['pbb_bar']['show_branding'] ) ? 'on' : false ;
+				$bar['behavior']['show_bar'] = isset( $_REQUEST['pbb_bar']['show_bar'] ) ? 'on' : false ;
 				$theme = $bar['theme'];
 				$link_module = $bar['link'];
 				$tracking  = $bar['tracking'];
@@ -124,16 +125,13 @@ if ( !class_exists( 'PBBS_Admin' ) &&  is_admin() ){
 		function validate_bar($link_module, $theme, $behavior, $showerrors=true){
 			$flag = true;
 			if($link_module['use_linkmodule']=="on"){
-				if ($link_module['linkurl']==''){
+				if (($link_module['linkurl']=='' || $link_module['linktext']=='') 
+					&& $link_module['linkurl'] != $link_module['linktext']){
 					if ($showerrors)
-						add_settings_error('linkurl','empty',__('Link URL may not be empty.','pbb-textdomain'),'error');
+						add_settings_error('linkurl','empty',__('Link URL and Link Text must either both be filled or both left empty.','pbb-textdomain'),'error');
+						add_settings_error('linktext','empty','','error');
 					$flag = false;					
 				}
-				if ($link_module['linktext']==''){
-					if ($showerrors)
-						add_settings_error('linktext','empty',__('Link text may not be empty.','pbb-textdomain'),'error');
-					$flag = false;					
-				}				
 			}
 			if ($behavior['do_bounce']=='on'){
 				if (!is_numeric($behavior['delay_bounce_secs'])){
@@ -268,7 +266,7 @@ if ( !class_exists( 'PBBS_Admin' ) &&  is_admin() ){
 			$this->settings_fields( 'savebar');
 			$tracking_desc = __('Activate tracking and configure the event labels.','pbb-textdomain'). " <a target='_blank' href='$this->info_page_link#events'>".__('More info','pbb-textdomain').'</a>';
 			
-			$fields = array(
+			$fields = array(				
 					array(
 						'id'	=> 'preview',
 						'type'	=> 'extra',
@@ -301,20 +299,20 @@ if ( !class_exists( 'PBBS_Admin' ) &&  is_admin() ){
 							array(
 							'id' => 'pretitle', // required
 							'type' => 'text', // required
-							'label' => '', // space as seperator
-							'desc' => __('text before the link, &lt;b&gt; and &lt;i&gt; tags allowed.','pbb-textdomain'),
+							'label' => 'text before the link', // space as seperator
+							'desc' => __(' &lt;b&gt; and &lt;i&gt; tags allowed.','pbb-textdomain'),
 							),
 							array(
 							'id' => 'linktext', // required
 							'type' => 'text', // required
-							'label' => '', // space as seperator
 							'desc' => __('clickable text','pbb-textdomain'),
+							'label' => __('link text','pbb-textdomain'),
 							),
 							array(
 							'id' => 'posttitle', // required
 							'type' => 'text', // required
-							'label' => '', // space as seperator
-							'desc' => __('text after the link','pbb-textdomain'),
+							'desc' => __(' &lt;b&gt; and &lt;i&gt; tags allowed.','pbb-textdomain'),
+							'label' => __('text after the link','pbb-textdomain'),
 							),
 						)
 					), // end of field
@@ -334,6 +332,12 @@ if ( !class_exists( 'PBBS_Admin' ) &&  is_admin() ){
 						'type' => 'checkbox',
 						'label' => __('Show link as button','pbb-textdomain'),
 					),
+					array(
+						'id' => 'linkclass',
+						'type' => 'text',
+						'label' => __('Link CSS Class','pbb-textdomain'),
+						'desc' => __('Advanced Setting: Adds class to Span','pbb-textdomain'),
+					),					
 					array(
 						'id' => 'ga_tracking',
 						'type' => 'checkbox',
@@ -393,7 +397,13 @@ if ( !class_exists( 'PBBS_Admin' ) &&  is_admin() ){
 						'id' => 'show_branding',
 						'type' => 'checkbox',
 						'label' => __('Show the PBB Branding link','pbb-textdomain'),
-					),									
+					),	
+					array(
+						'id' => 'show_bar',
+						'type' => 'checkbox',
+						'label' => __('Show Peanut Butter Bar','pbb-textdomain'),
+						'desc' => __('Uncheck this to temporarily hide the bar from your site.','pbb-textdomain'),
+					),
 				);
 			$error_bar_values = get_transient('pbb-error-values');
 			if (true===$error_bar_values)
