@@ -441,6 +441,7 @@ if ( !class_exists( 'PBBS_Admin' ) &&  is_admin() ){
 		 */
 		public function get_current_bar() {
 			$bar = get_option($this->settingprefix.'_smooth');
+
 			$bar_data = PBBS_Bar_Helper::flatten_bar($bar);
 			return $bar_data;
 		}

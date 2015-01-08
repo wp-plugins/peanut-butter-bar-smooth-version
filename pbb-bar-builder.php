@@ -167,6 +167,7 @@ if ( !class_exists( 'PBBS_Bar_Builder' ))
 		 * @param string $escape_type : 'attr','js' or none
 		 */		
 		private function clean($var, $escape_type){
+			$var = stripslashes($var);
 			if ($escape_type =='js'){
 				$var = esc_js($var);
 			}else if ($escape_type =='attr'){

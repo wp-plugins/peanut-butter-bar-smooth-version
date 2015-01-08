@@ -200,7 +200,7 @@ if ( !class_exists( 'PBBS_Settings_ScreenBuilder' ) ) {
 		 */
 		public function field_color( $args ) {
 			$size  = ( isset( $args['size'] ) && $args['size'] !='' ) ? $args['size'] : 'regular';
-			$args  = $this->get_arguments( $args, 'text', $size ); // escapes all attributes
+			$args  = $this->get_arguments( $args, 'color-picker' ); // escapes all attributes
 			$value = (string) esc_attr( $this->get_option( $args ) );
 			$error = $this->get_setting_error( $args['id'] );
 			$html  = sprintf( '<input type="text" id="%1$s[%2$s]" name="%1$s[%2$s]" value="%3$s"%4$s%5$s/>',  $args['settingname'], $args['id'], $value, $args['attr'], $error );

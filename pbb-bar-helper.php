@@ -75,7 +75,7 @@ if ( !class_exists( 'PBBS_Bar_Helper' ) &&  is_admin() ){
 					}else{
 						$value = $default;
 					}
-					$bar_output[$key]=$value;
+					$bar_output[$key]=stripslashes($value);
 				}
 			}
 			return $bar_output;

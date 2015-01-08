@@ -36,6 +36,8 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 This Readme file was generated using <a href = 'http://sudarmuthu.com/wordpress/wp-readme'>wp-readme</a>, which generates readme files for WordPress Plugins.
 
 ==Changelog== 
+= 1.1.1 = 
+* Fixed a bug when apostrophes were used in text fields
 
 = 1.1.0 =
 * Added checkbox to allow for hiding of bar without deactivating the plugin
