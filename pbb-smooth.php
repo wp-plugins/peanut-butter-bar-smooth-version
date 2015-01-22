@@ -96,7 +96,7 @@ if ( !class_exists( 'PBB_Smooth' ))
 	            return;
 	        }
 	 
-	        require_once( __DIR__ . '/pbb-update.php' );
+	        require_once( '/pbb-update.php' );
 	        pbb_smooth_update( $this->settingprefix.'_smoothdbver' , self::DB_VER);
 	    }
 

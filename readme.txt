@@ -36,6 +36,9 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 This Readme file was generated using <a href = 'http://sudarmuthu.com/wordpress/wp-readme'>wp-readme</a>, which generates readme files for WordPress Plugins.
 
 ==Changelog== 
+= 1.1.2 = 
+* Fixed a bug where for some users, the update file could not be found.
+
 = 1.1.1 = 
 * Fixed a bug when apostrophes were used in text fields
 
