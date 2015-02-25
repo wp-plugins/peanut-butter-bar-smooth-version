@@ -62,7 +62,7 @@ if ( !class_exists( 'PBBS_Bar_Builder' ))
 			if ($this->ischecked($behavior,'show_branding')){
 				$brandinglink = '<a id="pbb-logo" target="_blank" href="http://peanutbutterplugin.com/?utm_source=creditlink&utm_medium=bar"></a>';
 			}
-			$output = sprintf('<div id="pbb" class="%s"%s><div id="pbb-bar"%s>%s<div class="pbb-modules">',implode(' ', $bar_classes),$bar_data_string, $customstyle, $brandinglink);
+			$output = sprintf('<div id="pbb" class="%s"%s><div id="pbb-bar">%s<div class="pbb-modules">',implode(' ', $bar_classes),$bar_data_string, $brandinglink);
 			if ($this->ischecked($link_module,'use_linkmodule', false))
 			{
 				$foundmodule = true;
