@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Peanut Butter Bar (smooth version)
  * Description: All the good stuff that sticks to the top of your site. 
- * Version: 1.1.3
+ * Version: 1.2.0
  * Author: Andrew Couch
  * Author URI: http://andrew-couch.com
  * Plugin URI: http://peanutbutterplugin.com
@@ -78,7 +78,8 @@ if ( !class_exists( 'PBB_Smooth' ))
 			$barhtml ='';
 			if (isset($smooth_settings['barhtml']))
 			{
-				$barhtml = $smooth_settings['barhtml'];
+				$barhtml = apply_filters('pbb_filter_bar_output', $smooth_settings['barhtml'], 0);
+				$barhtml = do_shortcode($barhtml);
 			}
 			if ($return_value){
 				return $barhtml;

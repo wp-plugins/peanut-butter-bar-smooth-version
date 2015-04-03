@@ -22,6 +22,8 @@ The plugin allows you to attach sticky bars to the roof of your site that stays 
 
 This is the Smooth version of Peanut Butter Bar. It supports a single site-wide bar. The Crunchy (paid) version has more bits including multiple bars and attaching bars to specific posts/pages and categories. Learn more at <a href="http://peanutbutterplugin.com" target="_blank">peanutbutterplugin.com</a>.
 
+Check out this <a href="http://peanutbutterplugin.com/help-topics/filters-and-hooks-in-pbb-smooth/" target="_blank">blog post</a> for the supported filters and actions in PBB Smooth.
+
 == Installation ==
 
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page.
@@ -36,6 +38,10 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 This Readme file was generated using <a href = 'http://sudarmuthu.com/wordpress/wp-readme'>wp-readme</a>, which generates readme files for WordPress Plugins.
 
 ==Changelog== 
+
+= 1.2.0 = 
+* Enhancement : Added pbb_filter_bar_output filter. See http://peanutbutterplugin.com/help-topics/filters-and-hooks-in-pbb-smooth/
+* Enhancement : Bar text now accepts and runs shortcodes.
 
 = 1.1.3 =
 * Bugfix : Unknown variable when building bar. (Thanks to kdot for finding this.)
