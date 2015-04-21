@@ -2,7 +2,7 @@
 Contributors: andrewcouch 
 Tags: sticky bar, alert bar, sticky bar bottom, fixed bar, responsive bar, top bar, sticky header, hellobar, hello bar,
 Requires at least: 3.8
-Tested up to: 4.1.1
+Tested up to: 4.1.2
 Stable tag: trunk
 License: GPLv2 or later
 
@@ -38,6 +38,10 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 This Readme file was generated using <a href = 'http://sudarmuthu.com/wordpress/wp-readme'>wp-readme</a>, which generates readme files for WordPress Plugins.
 
 ==Changelog== 
+
+= 1.2.1 =
+* XSS Security fix : add_query_arg escaping
+* Enhancement : Added cache clearing for TotalCache and SuperCache when saving a bar change.
 
 = 1.2.0 = 
 * Enhancement : Added pbb_filter_bar_output filter. See http://peanutbutterplugin.com/help-topics/filters-and-hooks-in-pbb-smooth/
