@@ -103,6 +103,11 @@ if ( !class_exists( 'PBBS_Admin' ) &&  is_admin() ){
 	        	if ( !count( get_settings_errors() ) )
 	        	{
 					add_settings_error('general', 'settings_updated', __('Bar saved.','pbb-textdomain'), 'updated');
+					if (function_exists('w3tc_pgcache_flush')) {
+						w3tc_pgcache_flush();
+					} else if (function_exists('wp_cache_clear_cache')) {
+						wp_cache_clear_cache();
+					}				
 				}else{
 					set_transient('pbb-error-values',$bar,30);
 				}
@@ -110,8 +115,8 @@ if ( !class_exists( 'PBBS_Admin' ) &&  is_admin() ){
 			}
 
 			$goback = wp_get_referer();
-			$goback = add_query_arg( 'settings-updated', 'true',  $goback );
-			wp_redirect( $goback );			 
+			$goback = esc_url_raw(add_query_arg( 'settings-updated', 'true',  $goback ));
+			wp_safe_redirect( $goback );			 
 		}
 		/**
 		 * Validates whether a bar is complete
