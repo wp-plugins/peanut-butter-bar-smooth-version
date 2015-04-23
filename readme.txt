@@ -1,6 +1,6 @@
 === Peanut Butter Bar (smooth version) ===
 Contributors: andrewcouch 
-Tags: sticky bar, alert bar, sticky bar bottom, fixed bar, responsive bar, top bar, sticky header, hellobar, hello bar,
+Tags: sticky bar, alert bar, sticky bar bottom, fixed bar, responsive bar, top bar, sticky header, hellobar, hello bar, notification bar, sticky notification bar,
 Requires at least: 3.8
 Tested up to: 4.1.2
 Stable tag: trunk
