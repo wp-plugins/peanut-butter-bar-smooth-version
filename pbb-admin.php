@@ -132,9 +132,13 @@ if ( !class_exists( 'PBBS_Admin' ) &&  is_admin() ){
 			if($link_module['use_linkmodule']=="on"){
 				if (($link_module['linkurl']=='' || $link_module['linktext']=='') 
 					&& $link_module['linkurl'] != $link_module['linktext']){
-					if ($showerrors)
-						add_settings_error('linkurl','empty',__('Link URL and Link Text must either both be filled or both left empty.','pbb-textdomain'),'error');
-						add_settings_error('linktext','empty','','error');
+					if ($showerrors){
+						$error_field = 'linktext';
+						if ($link_module['linkurl']==''){
+							$error_field = 'linkurl';
+						}
+						add_settings_error($error_field,'empty',__('Link URL and Link Text must either both be filled or both left empty.','pbb-textdomain'),'error');
+					}
 					$flag = false;					
 				}
 			}
@@ -411,7 +415,8 @@ if ( !class_exists( 'PBBS_Admin' ) &&  is_admin() ){
 					),
 				);
 			$error_bar_values = get_transient('pbb-error-values');
-			if (true===$error_bar_values)
+
+			if (false!==$error_bar_values)
 			{
 				$bar_data = array_merge($error_bar_values['link'],$error_bar_values['theme'],$error_bar_values['tracking'],$error_bar_values['behavior']);			
 			}

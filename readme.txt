@@ -2,7 +2,7 @@
 Contributors: andrewcouch 
 Tags: sticky bar, alert bar, sticky bar bottom, fixed bar, responsive bar, top bar, sticky header, hellobar, hello bar, notification bar, sticky notification bar,
 Requires at least: 3.8
-Tested up to: 4.2
+Tested up to: 4.3
 Stable tag: trunk
 License: GPLv2 or later
 
@@ -14,11 +14,11 @@ Peanut Butter Bar allows you to attach sticky bars to the roof of your site that
 
 The plugin allows you to attach sticky bars to the roof of your site that stays visible no matter how far a user scrolls.
 
-*   Responsive and mobile friendly.  
-*   Choose from a range of tasty colors. 
 *   Track clicks using Google Analytics Events using the Analytics you already use in your blog.  
 *   Plugin runs within your WordPress install. No external servers to deal with.
 *   Close button state persists through a user's session without cookies.    
+*   Responsive and mobile friendly.  
+*   Choose from a range of tasty colors. 
 
 This is the Smooth version of Peanut Butter Bar. It supports a single site-wide bar. The Crunchy (paid) version has more bits including multiple bars and attaching bars to specific posts/pages and categories. Learn more at <a href="http://peanutbutterplugin.com" target="_blank">peanutbutterplugin.com</a>.
 
@@ -38,6 +38,10 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 This Readme file was generated using <a href = 'http://sudarmuthu.com/wordpress/wp-readme'>wp-readme</a>, which generates readme files for WordPress Plugins.
 
 ==Changelog== 
+
+= 1.2.2 = 
+* Verify testing with 4.3
+* Fixed reloading of values after validation error
 
 = 1.2.1 =
 * XSS Security fix : add_query_arg escaping
